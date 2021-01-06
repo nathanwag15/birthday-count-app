@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
 
 class BirthdayForm extends Component {
     
@@ -6,7 +7,12 @@ class BirthdayForm extends Component {
         super(props);
     }
     render () {
-        return <h1>BirthdayForm Component</h1>
+        return(
+            <div>
+                <h1>BirthdayForm Component</h1>
+                <DatePicker />
+            </div>
+        )
     }
 }
 
