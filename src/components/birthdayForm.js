@@ -9,10 +9,13 @@ class BirthdayForm extends Component {
 
         this.state = {
             startDate: moment(),
+            formCompleted: false
 
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleGenerate = this.handleGenerate.bind(this)
+        this.renderStuff = this.renderStuff.bind(this)
     }
     
     handleChange(date){
@@ -20,6 +23,26 @@ class BirthdayForm extends Component {
             startDate: date
         })
     }   
+
+    handleGenerate(){
+        this.setState({
+            formCompleted: true
+        })
+    }
+
+    renderStuff(){
+        if(this.state.formCompleted){
+            return(
+            <h2>
+                This is only appearing if the form has been completed. Show Countdown timer. 
+            </h2>)
+        } return(
+            <h2>
+                dont show nothin
+            </h2>
+        )
+        
+    }
 
     render () {
         return(
@@ -29,6 +52,8 @@ class BirthdayForm extends Component {
                     selected={this.state.startDate}
                     onChange={this.handleChange}
                 />
+                <a onClick={this.handleGenerate}>Generate Countdown</a>
+                {this.renderStuff()}
             </div>
         )
     }
