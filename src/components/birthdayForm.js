@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Clock from './clock';
 
 class BirthdayForm extends Component {
     
@@ -15,7 +16,6 @@ class BirthdayForm extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleGenerate = this.handleGenerate.bind(this)
-        this.renderStuff = this.renderStuff.bind(this)
     }
     
     handleChange(date){
@@ -30,30 +30,27 @@ class BirthdayForm extends Component {
         })
     }
 
-    renderStuff(){
-        if(this.state.formCompleted){
-            return(
-            <h2>
-                This is only appearing if the form has been completed. Show Countdown timer. 
-            </h2>)
-        } return(
-            <h2>
-                dont show nothin
-            </h2>
-        )
-        
-    }
+    
 
     render () {
         return(
             <div>
-                <h1>BirthdayForm Component</h1>
-                <DatePicker 
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
-                />
-                <a onClick={this.handleGenerate}>Generate Countdown</a>
-                {this.renderStuff()}
+
+            {
+                this.state.formCompleted ? 
+                    <div>
+                        <Clock BirthdayFormState={this.state} />
+                    </div>
+                :
+                    <div>
+                        <h1>BirthdayForm Component</h1>
+                        <DatePicker 
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                        />
+                        <a onClick={this.handleGenerate}>Generate Countdown</a>
+                    </div>
+            }
             </div>
         )
     }
