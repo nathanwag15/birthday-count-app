@@ -39,7 +39,7 @@ class BirthdayForm extends Component {
             {
                 this.state.formCompleted ? 
                     <div>
-                        <Clock BirthdayFormState={this.state} />
+                        <Clock birthdayFormState={this.state} />
                     </div>
                 :
                     <div>
