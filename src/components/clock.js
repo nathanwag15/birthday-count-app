@@ -5,6 +5,8 @@ export default class Clock extends Component {
     constructor(props){
         super(props)
 
+        this.timer = 0
+        this.birthday = props.birthdayFormState.startDate.toString()
         this.state = {
             timeRemaining: this.getTimeRemaining(this.props.birthdayFormState.startDate.toString())
         }
@@ -24,7 +26,6 @@ export default class Clock extends Component {
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        
         return {
             'days': days,
             'hours': hours,
@@ -32,10 +33,6 @@ export default class Clock extends Component {
             'seconds': seconds
         }
     }
-
-    componentWillMount() {
-    }
-
     render(){
         const data = this.state.timeRemaining 
 
@@ -48,6 +45,13 @@ export default class Clock extends Component {
             </div>
         )
 
+    }
+
+    componentDidMount() {
+        this.timer - setInterval(() => {
+            const timeRemaining = this.getTimeRemaining(this.birthday)
+            this.setState({timeRemaining: timeRemaining})
+        }, 1000);
     }
 
 }
